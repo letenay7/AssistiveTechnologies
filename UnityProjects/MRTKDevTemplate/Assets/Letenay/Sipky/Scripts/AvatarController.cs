@@ -14,7 +14,9 @@ public class AvatarController : MonoBehaviour
    
     private float moveDistance = 1f;
     private float speed = 1;
-    
+    //  TODO add multiplier for turning speed and reverse
+    // stlacim tlacitko a hybem sa kym neslacim ine  alebo pokial neuhnem pohladom
+    // ked uhnem pohladom tak spravim stop 
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -50,6 +52,7 @@ public class AvatarController : MonoBehaviour
     public void Left() 
     {
         Move(Vector3.left);
+        /// left a right ma byt iba otacanie danym smerom
     }
 
     public void Right() 
