@@ -18,19 +18,10 @@ public class MenuScript : MonoBehaviour
     {
         GameObject toggle = gameObject.transform.GetChild(0).gameObject;
         StatefulInteractable interactable = toggle.GetComponent<StatefulInteractable>();
-        if (interactable != null)
+        for (int i = 1; i < gameObject.transform.childCount; i++)
         {
-            //Debug.Log($"aaaaaaaaa {interactable.IsToggled}");
-            //interactable.ForceSetToggled(!interactable.IsToggled);
-            for (int i = 1; i < gameObject.transform.childCount; i++)
-            {
-                GameObject child = gameObject.transform.GetChild(i).gameObject;
-                child.SetActive(interactable.IsToggled);
-            }
-        }
-        else
-        {
-            Debug.LogWarning("StatefulInteractable component not found on toggle GameObject.");
+            GameObject child = gameObject.transform.GetChild(i).gameObject;
+            child.SetActive(interactable.IsToggled);
         }
     }
 
@@ -46,5 +37,10 @@ public class MenuScript : MonoBehaviour
     public void Horn()
     {
         avatarController.MakeSound();
+    }
+
+    public void Stop()
+    {
+        avatarController.StopMovement();
     }
 }
