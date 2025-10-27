@@ -10,7 +10,6 @@ public class ContinuousMovementHandler : MonoBehaviour
     private GameObject avatar;
     private AvatarController avatarController;
     private bool isGazeHovered = false;
-
     private enum ActionType
     {
         Forward,
@@ -38,7 +37,6 @@ public class ContinuousMovementHandler : MonoBehaviour
             isGazeHovered = false;
             StopAction(); // Stop movement immediately if gaze is broken
         }
-        
     }
 
      // Called when the 2-second dwell is complete (XRI Select Entered)

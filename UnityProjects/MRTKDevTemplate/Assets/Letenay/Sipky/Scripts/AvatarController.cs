@@ -13,13 +13,22 @@ public class AvatarController : MonoBehaviour
     private Rigidbody rigidBody;
     private float forwardSpeed = 1f;
     [SerializeField]
-    private float reverseMultiplier = 0.5f;
+    private float reverseSpeedMultiplier = 0.5f;
     [SerializeField]
-    private float rotateMultiplier = 0.8f;
+    private float rotationSpeedMultiplier = 0.8f;
     private Vector3 currentMovementInput = Vector3.zero;
     private float currentRotationInput = 0f;
+    /*
+        base values for wheelchair position are 128
+        forward = increase baseY
+        reverse = decrease baseY
+        right = increase baseX
+        left = decrease baseX
+        https://github.com/JurajVincur/BleTest/blob/main/Assets/BleWheelchair/Scripts/TestBle.cs  
+    */
+    private float baseX = 128f;
+    private float baseY = 128f;
 
-    //  TODO fix movement direction after rotating 
     // TODO fix accidental triggers on gaze exit
     void Start()
     {
@@ -39,10 +48,8 @@ public class AvatarController : MonoBehaviour
             float speed = forwardSpeed;
             if (currentMovementInput == Vector3.back)
             {
-                speed *= reverseMultiplier;
+                speed *= reverseSpeedMultiplier;
             }
-
-            // Move relative to the character's current orientation
             Vector3 moveVector = currentMovementInput * speed;        
             // Apply velocity, keeping existing Y velocity (e.g., gravity)
             rigidBody.velocity = new Vector3(moveVector.x, rigidBody.velocity.y, moveVector.z);
@@ -53,7 +60,7 @@ public class AvatarController : MonoBehaviour
     {
         if (currentRotationInput != 0f)
         {
-            float rotationAmount = currentRotationInput * rotateMultiplier;
+            float rotationAmount = currentRotationInput * rotationSpeedMultiplier;
             transform.Rotate(Vector3.up, rotationAmount);
         }
     }
@@ -77,9 +84,10 @@ public class AvatarController : MonoBehaviour
     
     public void SetRotationInput(float direction)
     {
-        // -1 for left
-        //  1 for right,
-        //  0 for stop
+        /* -1 for left
+          1 for right,
+          0 for stop 
+        */
         currentRotationInput = direction;
     }
 
