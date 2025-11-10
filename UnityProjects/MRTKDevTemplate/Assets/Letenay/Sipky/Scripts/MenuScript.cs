@@ -1,46 +1,46 @@
 using MixedReality.Toolkit;
-using MixedReality.Toolkit.UX;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuScript : MonoBehaviour
+namespace Letenay.Sipky.Scripts
 {
-    private AvatarController avatarController;
-    [SerializeField]
-    private GameObject avatar;
-    void Start()
+    public class MenuScript : MonoBehaviour
     {
-        avatarController = avatar.GetComponent<AvatarController>();
-    }
-
-    public void ToggleOnOff()
-    {
-        GameObject toggle = gameObject.transform.GetChild(0).gameObject;
-        StatefulInteractable interactable = toggle.GetComponent<StatefulInteractable>();
-        for (int i = 1; i < gameObject.transform.childCount; i++)
+        private AvatarController avatarController;
+        [SerializeField]
+        private GameObject avatar;
+        void Start()
         {
-            GameObject child = gameObject.transform.GetChild(i).gameObject;
-            child.SetActive(interactable.IsToggled);
+            avatarController = avatar.GetComponent<AvatarController>();
         }
-    }
 
-    public void SpeedUp()
-    {
-        avatarController.IncreaseSpeed();
-    }
+        public void ToggleOnOff()
+        {
+            GameObject toggle = gameObject.transform.GetChild(0).gameObject;
+            StatefulInteractable interactable = toggle.GetComponent<StatefulInteractable>();
+            for (int i = 1; i < gameObject.transform.childCount; i++)
+            {
+                GameObject child = gameObject.transform.GetChild(i).gameObject;
+                child.SetActive(interactable.IsToggled);
+            }
+        }
 
-    public void SlowDown()
-    {
-        avatarController.DecreaseSpeed();
-    }
-    public void Horn()
-    {
-        avatarController.MakeSound();
-    }
+        public void SpeedUp()
+        {
+            avatarController.IncreaseSpeed();
+        }
 
-    public void Stop()
-    {
-        avatarController.StopMovement();
+        public void SlowDown()
+        {
+            avatarController.DecreaseSpeed();
+        }
+        public void Horn()
+        {
+            avatarController.MakeSound();
+        }
+
+        public void Stop()
+        {
+            avatarController.StopMovement();
+        }
     }
 }
