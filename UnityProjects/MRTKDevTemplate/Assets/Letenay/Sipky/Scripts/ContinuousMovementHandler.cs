@@ -9,7 +9,6 @@ using UnityEngine.Serialization;
 namespace Letenay.Sipky.Scripts
 {
 
-
     public class ContinuousMovementHandler : MonoBehaviour
     {
         [SerializeField]
@@ -47,8 +46,6 @@ namespace Letenay.Sipky.Scripts
                 directionController.ResetToDefault();
             }
         }
-
-
 
         // Called when the 2-second dwell is complete (XRI Select Entered)
         public void OnDwellSelectEntered(SelectEnterEventArgs eventArgs)
@@ -115,8 +112,5 @@ namespace Letenay.Sipky.Scripts
            // currentlySelected.text = "Currently selected: Stop";
 
         }
-
-
-
     }
 }

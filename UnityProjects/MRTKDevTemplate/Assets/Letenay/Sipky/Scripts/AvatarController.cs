@@ -3,8 +3,6 @@ using TMPro;
 
 namespace Letenay.Sipky.Scripts
 {
-
-
     public class AvatarController : MonoBehaviour
     {
         private Rigidbody rigidBody;
@@ -17,7 +15,7 @@ namespace Letenay.Sipky.Scripts
         private TextMeshProUGUI currentlySelected;
         private Vector3 currentMovementInput = Vector3.zero;
         private float currentRotationInput = 0f;
-        
+
         void Start()
         {
             rigidBody = GetComponent<Rigidbody>();

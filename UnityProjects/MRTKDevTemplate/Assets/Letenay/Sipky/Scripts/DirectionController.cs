@@ -2,9 +2,6 @@ using UnityEngine;
 
 namespace Letenay.Sipky.Scripts
 {
-
-
-
     public class DirectionController : MonoBehaviour
     {
         private GameObject currentDirection;
@@ -24,7 +21,6 @@ namespace Letenay.Sipky.Scripts
         public void SwitchCurrentToSelected()
         {
             effectHandler.SwitchHoverToSelected();
-
         }
 
         public void ResetToDefault()
