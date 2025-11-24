@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Letenay.Sipky.Scripts
+namespace Letenay
 {
     public class DirectionController : MonoBehaviour
     {
@@ -27,7 +27,7 @@ namespace Letenay.Sipky.Scripts
         {
             foreach (Transform child in transform)
             {
-                if (child.TryGetComponent<LoadingEffectHandler>(out var handler))
+                if (child.TryGetComponent(out LoadingEffectHandler handler))
                 {
                     handler.SwitchToDefault();
                 }

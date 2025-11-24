@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Letenay.Sipky.Scripts
+namespace Letenay
 {
     public class LoadingEffectHandler : MonoBehaviour
     {

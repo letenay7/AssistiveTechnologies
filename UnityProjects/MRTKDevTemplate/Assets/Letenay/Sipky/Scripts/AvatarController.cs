@@ -1,27 +1,32 @@
 using UnityEngine;
 using TMPro;
 
-namespace Letenay.Sipky.Scripts
+
+namespace Letenay
 {
     public class AvatarController : MonoBehaviour
     {
         private Rigidbody rigidBody;
         private float forwardSpeed = 1f;
+
         [SerializeField]
         private float reverseSpeedMultiplier = 0.5f;
+
         [SerializeField]
         private float rotationSpeedMultiplier = 0.8f;
+
         [SerializeField]
         private TextMeshProUGUI currentlySelected;
+
         private Vector3 currentMovementInput = Vector3.zero;
         private float currentRotationInput = 0f;
 
-        void Start()
+        private void Start()
         {
             rigidBody = GetComponent<Rigidbody>();
-
         }
-        void FixedUpdate()
+
+        private void FixedUpdate()
         {
             ApplyMovement();
             ApplyRotation();
@@ -50,6 +55,7 @@ namespace Letenay.Sipky.Scripts
                 transform.Rotate(Vector3.up, rotationAmount);
             }
         }
+
         public void StopMovement()
         {
             rigidBody.velocity = Vector3.zero;

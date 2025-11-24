@@ -1,17 +1,20 @@
 using UnityEngine;
 
-namespace Letenay.Sipky.Scripts
+namespace Letenay
 {
     public class CameraController : MonoBehaviour
     {
         [SerializeField]
         private GameObject avatar;
+
         private Vector3 offset;
-        void Start()
+
+        private void Start()
         {
             offset = transform.position - avatar.transform.position;
         }
-        void LateUpdate()
+
+        private void LateUpdate()
         {
             transform.position = avatar.transform.position + offset;
         }

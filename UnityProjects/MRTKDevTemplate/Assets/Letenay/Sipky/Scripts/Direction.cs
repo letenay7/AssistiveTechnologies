@@ -1,4 +1,4 @@
-﻿namespace Letenay.Sipky.Scripts
+﻿namespace Letenay
 {
     public enum Direction
     {

@@ -1,30 +1,28 @@
-using MixedReality.Toolkit;
 using MixedReality.Toolkit.Input;
-using MixedReality.Toolkit.UX;
 using TMPro;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.Serialization;
 
-namespace Letenay.Sipky.Scripts
+namespace Letenay
 {
-
     public class ContinuousMovementHandler : MonoBehaviour
     {
         [SerializeField]
         private GameObject avatar;
+
         private AvatarController avatarController;
 
         [SerializeField]
         private TextMeshProUGUI currentlySelected;
+
         [SerializeField]
         private Direction currentDirection;
-        private DirectionController directionController;
 
+        private DirectionController directionController;
         private bool isSelected;
         private bool isHovering;
 
-        void Start()
+        private void Start()
         {
             avatarController = avatar.GetComponent<AvatarController>();
             directionController = gameObject.GetComponentInParent<DirectionController>();
@@ -66,7 +64,6 @@ namespace Letenay.Sipky.Scripts
                 return;
             }
             directionController.SwitchCurrentToSelected();
-
             switch (currentDirection)
             {
                 case Direction.Forward:
@@ -82,35 +79,34 @@ namespace Letenay.Sipky.Scripts
                     avatarController.SetRotationInput(1f);
                     break;
             }
+
             currentlySelected.text = $"Currently selected: {currentDirection}";
         }
 
         private void StopAction()
         {
+            if (avatarController == null)
+            {
+                Debug.Log("Avatar Controller is null");
+                return;
+            }
 
-           if (avatarController == null)
-           {
-               Debug.Log("Avatar Controller is null");
-               return;
-           }
-           isSelected = false;
-           isHovering = false;
-           directionController.ResetToDefault();
+            isSelected = false;
+            isHovering = false;
+            directionController.ResetToDefault();
 
-
-           switch (currentDirection)
-           {
-               case Direction.Forward:
-               case Direction.Reverse:
-                   avatarController.SetMovementInput(Vector3.zero);
-                   break;
-               case Direction.Left:
-               case Direction.Right:
-                   avatarController.SetRotationInput(0f);
-                   break;
-           }
-           // currentlySelected.text = "Currently selected: Stop";
-
+            switch (currentDirection)
+            {
+                case Direction.Forward:
+                case Direction.Reverse:
+                    avatarController.SetMovementInput(Vector3.zero);
+                    break;
+                case Direction.Left:
+                case Direction.Right:
+                    avatarController.SetRotationInput(0f);
+                    break;
+            }
+            //currentlySelected.text = "Currently selected: Stop";
         }
     }
 }

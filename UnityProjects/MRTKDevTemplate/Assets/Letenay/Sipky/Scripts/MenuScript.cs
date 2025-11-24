@@ -1,14 +1,16 @@
 using MixedReality.Toolkit;
 using UnityEngine;
 
-namespace Letenay.Sipky.Scripts
+namespace Letenay
 {
     public class MenuScript : MonoBehaviour
     {
         private AvatarController avatarController;
+
         [SerializeField]
         private GameObject avatar;
-        void Start()
+
+        private void Start()
         {
             avatarController = avatar.GetComponent<AvatarController>();
         }
@@ -33,6 +35,7 @@ namespace Letenay.Sipky.Scripts
         {
             avatarController.DecreaseSpeed();
         }
+
         public void Horn()
         {
             avatarController.MakeSound();
