@@ -12,7 +12,11 @@ namespace Letenay.Sipky.Scripts
 
         private void Start()
         {
-            indicator = transform.GetChild(4).gameObject;
+            indicator = transform.Find("DwellIndicator").gameObject;
+            if (indicator == null)
+            {
+                Debug.LogError("No dwell indicator found");
+            }
             defaultColor = indicator.GetComponent<RawImage>().color;
         }
 

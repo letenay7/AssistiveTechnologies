@@ -2,36 +2,40 @@ using UnityEngine;
 
 public class JoystickController : MonoBehaviour
 {
-    private bool isWithinBounds;
+    private bool isEnabled;
     [SerializeField]
-    private Transform gazeIndicator;
+    private GameObject gazeIndicator;
     private float x;
     private float y;
     private Vector3 defaultIndicatorPosition = Vector3.zero;
 
     void Start()
     {
-        defaultIndicatorPosition = gazeIndicator.localPosition;
+        defaultIndicatorPosition = gazeIndicator.transform.localPosition;
     }
 
     void Update()
     {
-        if (isWithinBounds)
+        if (isEnabled)
         {
-            gazeIndicator.position = new Vector3(x, y, gazeIndicator.position.z);
+            gazeIndicator.transform.position = new Vector3(x, y, gazeIndicator.transform.position.z);
         }
     }
 
     public void DisableMovement()
     {
-        isWithinBounds = false;
-        gazeIndicator.localPosition = defaultIndicatorPosition;
+        isEnabled = false;
+        gazeIndicator.transform.localPosition = defaultIndicatorPosition;
+        gazeIndicator.GetComponent<BoxCollider>().enabled = true;
         Debug.Log("Movement Disabled");
     }
 
     public void EnableMovement()
     {
-        isWithinBounds = true;
+        isEnabled = true;
+        gazeIndicator.transform.Find("DwellIndicator").gameObject.SetActive(false);
+        // disable collider because of raycasts
+        gazeIndicator.GetComponent<BoxCollider>().enabled = false;
         Debug.Log("Movement Enabled");
     }
 
@@ -39,9 +43,9 @@ public class JoystickController : MonoBehaviour
     {
         Transform hitObject = hit.collider.transform;
         Vector3 localPosition = hitObject.InverseTransformPoint(hit.point);
-        if (isWithinBounds)
+        if (isEnabled)
         {
-            Debug.Log(localPosition);
+            //Debug.Log(localPosition);
             x = hit.point.x;
             y = hit.point.y;
             /* Values accepted by the wheelchair are 0-255
@@ -53,8 +57,8 @@ public class JoystickController : MonoBehaviour
                 DisableMovement();
             }
             int joystickX = Mathf.RoundToInt(localPosition.x) + 128;
-            int joystickY = Mathf.RoundToInt(localPosition.y)  + 128;
-            Debug.Log($"x:{joystickX} y:{joystickY}");
+            int joystickY = Mathf.RoundToInt(localPosition.y) + 128;
+            //Debug.Log($"x: {joystickX} y: {joystickY}");
         }
     }
 }
