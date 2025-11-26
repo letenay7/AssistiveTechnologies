@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1215210745477300609}
   - component: {fileID: 8330658690295658377}
   m_Layer: 0
-  m_Name: BorderWalWest
+  m_Name: BorderWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

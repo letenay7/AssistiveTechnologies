@@ -589,7 +589,7 @@ GameObject:
   - component: {fileID: 6960103233774376685}
   - component: {fileID: 8552173413741395761}
   m_Layer: 5
-  m_Name: Dwellindicator
+  m_Name: DwellIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
